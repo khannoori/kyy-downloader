@@ -1,0 +1,7 @@
+{
+    "@import" : "src/Resources/config/config.json",
+
+    "routing.options" : {},
+
+    "monolog.level"   : 100
+}

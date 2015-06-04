@@ -1,0 +1,3 @@
+{
+    "@import" : "src/Resources/config/config.json"
+}

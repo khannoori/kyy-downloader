@@ -1,0 +1,22 @@
+{
+    "name"        : "kanafghan/kyy-downloader",
+    "type"        : "project",
+    "description" : "A console application for downloading the Kaisi Yeh Yaariaan serial.",
+    "license"     : "MIT",
+
+    "require" : {
+        "php"               : "~5.4",
+        "doctrine/dbal"     : "~2.4",
+        "flint/flint"       : "1.7.0",
+        "monolog/monolog"   : "~1.4",
+        "symfony/console"   : "2.5",
+        "guzzlehttp/guzzle" : "~6.0"
+    },
+
+    "autoload" : {
+        "psr-4" : {
+            "KanAfghan\\KyyDownloader\\": "src"
+        },
+        "files" : ["src/functions.php"]
+    }
+}

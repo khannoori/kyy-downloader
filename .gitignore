@@ -1,0 +1,7 @@
+.DS_Store
+phpunit.xml
+config/dev.json
+var/*
+vendor/*
+downloads/*
+!.gitkeep

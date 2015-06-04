@@ -1,0 +1,17 @@
+{
+    "routing.resource" : "%root_dir%/src/Resources/routing/routing.xml",
+    "routing.options" : {
+        "cache_dir" : "%cache_dir%/routing"
+    },
+
+    "monolog.name" : "Skeleton",
+    "monolog.level" : 400,
+    "monolog.logfile" : "%root_dir%/var/logs/%env%.log",
+
+    "twig.path" : "%root_dir%/src/Resources/views",
+    "twig.options" : {
+        "cache"            : "%cache_dir%/twig",
+        "auto_reload"      : "%debug%",
+        "strict_variables" : "%debug%"
+    }
+}

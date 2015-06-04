@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+namespace KanAfghan\KyyDownloader;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+initialize_error_handler('dev', false);
+
+$app = create_application('dev');
+$app->boot();
+
+$console = $app['console'];
+$console->addCommands($app['console.commands']);
+$console->run();
