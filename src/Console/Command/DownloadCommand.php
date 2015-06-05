@@ -5,8 +5,8 @@ namespace KanAfghan\KyyDownloader\Console\Command;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\inputArgument;
-use Symfony\Component\Console\Input\inputOption;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Output\OutputFormatterStyle;
 
 /**
  * @package kyy-downloader
@@ -26,37 +26,37 @@ class DownloadCommand extends \Symfony\Component\Console\Command\Command
         $this
             ->setName('download')
             ->setDescription('Download the Kaise Yeh Yaarian serial.')
-        ;
-        $this
-        ->setName('Download episode: from')
-        ->setDescription('Download episode of KYY serial')
-        ->setDefinition(array(
-                new inputOption ('from', '_from', inputOption::VALUE_OPTIONAL, 'Begin downloading from',$_from),
-                new inputOption('to', _to, inputOption::VALUE_OPTIONAL, 'End downloading at ', $_to)        
+            ->addArgument(
+                        'from',
+                        InputArgument::REQUIRED,
+                        'A positive integer indicating the episode number')
+            ->addArgument(
+                        'to',
+                        InputArgument::REQUIRED,
+                        'A positive integer indicating the episode number'
                 )
-            )
         ;
+       
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output, OutputFormatterStyle $output)
     {
 
         $header_style = new OutputFormatterStyle('white', 'green', array('bold'));
         $output->getFormatter()->setStyle('header', $header_style);
 
-        $_from = intval($input->getOption('_from'));
-        $_to = intval($input->getOption('_to'));
+        $_from = intval($input->getOption('from'));
+        $_to = intval($input->getOption('to'));
 
         if ( ($_from >= $_to) || ($_from < 0) ) {
-           throw new \InvalidArgumentException('_to number should be greater than _from number');
+           throw new \InvalidArgumentException('to number should be greater than from number');
         }
 
-        $output->writeln('<header> Downloading from '.$_from.' - ', 'to' .$_to.'</header>');
+        $output->writeln(sprintf('<header>Downloading from %d to %d', $_from, $_to));
         
-
         // $episodeNumber = 127;
         // $episode = sprintf(self::DOWNLOAD_ENDPOINT, $episodeNumber, $episodeNumber);
         // $filename = sprintf(self::FILENAME, $episodeNumber);
