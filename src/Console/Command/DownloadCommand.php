@@ -6,8 +6,6 @@ use GuzzleHttp\Client;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Output\OutputFormatterStyle;
-
 /**
  * @package kyy-downloader
  */
@@ -21,20 +19,19 @@ class DownloadCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function configure()
     {
-        $_from = 0;
-        $_to   = 1000;
         $this
             ->setName('download')
             ->setDescription('Download the Kaise Yeh Yaarian serial.')
             ->addArgument(
                         'from',
                         InputArgument::REQUIRED,
-                        'A positive integer indicating the episode number')
+                        'A positive integer indicating the episode number'
+            )
             ->addArgument(
                         'to',
                         InputArgument::REQUIRED,
                         'A positive integer indicating the episode number'
-                )
+            )
         ;
        
     }
@@ -42,14 +39,11 @@ class DownloadCommand extends \Symfony\Component\Console\Command\Command
     /**
      * {@inheritDoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output, OutputFormatterStyle $output)
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $header_style = new OutputFormatterStyle('white', 'green', array('bold'));
-        $output->getFormatter()->setStyle('header', $header_style);
-
-        $_from = intval($input->getOption('from'));
-        $_to = intval($input->getOption('to'));
+        $_from = intval($input->getArgument('from'));
+        $_to = intval($input->getArgument('to'));
 
         if ( ($_from >= $_to) || ($_from < 0) ) {
            throw new \InvalidArgumentException('to number should be greater than from number');
