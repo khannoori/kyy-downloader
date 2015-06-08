@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+
 /**
  * @package kyy-downloader
  */
@@ -42,14 +43,19 @@ class DownloadCommand extends \Symfony\Component\Console\Command\Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $_from = intval($input->getArgument('from'));
-        $_to = intval($input->getArgument('to'));
+        $from = (integer) $input->getArgument('from');
+        $to = (integer $input->getArgument('to');
 
-        if ( ($_from >= $_to) || ($_from < 0) ) {
+        if ( ($from >= $to) || ($from < 0) ) {
            throw new \InvalidArgumentException('to number should be greater than from number');
         }
 
-        $output->writeln(sprintf('<header>Downloading from %d to %d', $_from, $_to));
+        $output->writeln(sprintf('<header>Downloading from %d to %d', $from, $to));
+        
+      
+    }
+    protected function downloadEpisode($episode, OutputInterface $output)
+    {
         
         // $episodeNumber = 127;
         // $episode = sprintf(self::DOWNLOAD_ENDPOINT, $episodeNumber, $episodeNumber);
@@ -93,5 +99,5 @@ class DownloadCommand extends \Symfony\Component\Console\Command\Command
                 $output->writeln(sprintf('Downloaded %d MB', $mb));            
             }
         }*/
-    }
+    } 
 }
