@@ -44,13 +44,13 @@ class DownloadCommand extends \Symfony\Component\Console\Command\Command
     {
 
         $from = (integer) $input->getArgument('from');
-        $to = (integer $input->getArgument('to');
+        $to = (integer) $input->getArgument('to');
 
         if ( ($from >= $to) || ($from < 0) ) {
            throw new \InvalidArgumentException('to number should be greater than from number');
         }
 
-        $output->writeln(sprintf('<header>Downloading from %d to %d', $from, $to));
+        $output->writeln(sprintf('Downloading from %d to %d', $from, $to));
         
       
     }
